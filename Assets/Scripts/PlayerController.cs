@@ -14,12 +14,16 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private Rotation rotation;
+    private float halfWidth;
     private float distanceToGround;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        distanceToGround = GetComponent<Collider2D>().bounds.extents.y;
+
+        Collider2D collider = GetComponent<Collider2D>();
+        halfWidth = collider.bounds.extents.x;
+        distanceToGround = collider.bounds.extents.y;
     }
 
     void FixedUpdate()
@@ -31,8 +35,7 @@ public class PlayerController : MonoBehaviour
             force.y = Input.GetButton("Vertical") ? jumpSpeed : 0f;
         }
 
-        force = Quaternion.Euler(new Vector3(0f, 0f, (float)rotation)) * force;
-        rigidBody.AddForce(force);
+        rigidBody.AddRelativeForce(force);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -61,6 +64,8 @@ public class PlayerController : MonoBehaviour
 
     private bool CanJump()
     {
-        return Physics2D.Raycast(transform.position, transform.rotation * Vector3.down, distanceToGround + 0.1f);
+        // Raycast on the left and right edges of the bike
+        return Physics2D.Raycast(transform.position - new Vector3(halfWidth, 0f, 0f), transform.rotation * Vector3.down, distanceToGround + 0.1f) ||
+            Physics2D.Raycast(transform.position + new Vector3(halfWidth, 0f, 0f), transform.rotation * Vector3.down, distanceToGround + 0.1f);
     }
 }
