@@ -6,28 +6,31 @@ public class PlayerController : MonoBehaviour
 
     private enum Orientation
     {
-        up = 0, right = 90, down = 180, left = 270
+        up = 0,
+        right = 90,
+        down = 180,
+        left = 270
     };
 
     private enum State
     {
-        onGround, onWallCeil, inAir
+        onGround,
+        onWallCeil,
+        inAir
     };
 
-    static Dictionary<string, Orientation> orientationsBySurface = new Dictionary<string, Orientation>()
-    {
-        {"Ground", Orientation.up},
-        {"Left Wall", Orientation.right},
-        {"Ceiling", Orientation.down},
-        {"Right Wall", Orientation.left}
+    static Dictionary<string, Orientation> orientationsBySurface = new Dictionary<string, Orientation>() {
+        { "Ground", Orientation.up },
+        { "Left Wall", Orientation.right },
+        { "Ceiling", Orientation.down },
+        { "Right Wall", Orientation.left }
     };
 
-    static Dictionary<Orientation, string> surfacesByOrientation = new Dictionary<Orientation, string>()
-    {
-        {Orientation.up, "Ground"},
-        {Orientation.right, "Left Wall"},
-        {Orientation.down, "Ceiling"},
-        {Orientation.left, "Right Wall"}
+    static Dictionary<Orientation, string> surfacesByOrientation = new Dictionary<Orientation, string>() {
+        { Orientation.up, "Ground" },
+        { Orientation.right, "Left Wall" },
+        { Orientation.down, "Ceiling" },
+        { Orientation.left, "Right Wall" }
     };
 
     private const int TERRAIN_LAYER = 8;
@@ -44,6 +47,18 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Rotate Left"))
+        {
+            Rotate(true);
+        }
+        if (Input.GetButtonDown("Rotate Right"))
+        {
+            Rotate(false);
+        }
     }
 
     void FixedUpdate()
@@ -70,16 +85,17 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
             string tag = other.gameObject.tag;
+            if (!tag.Equals(surfacesByOrientation[orientation]))
+            {
+                Kill();
+            }
             if (tag.Equals("Ground"))
             {
                 state = State.onGround;
             }
-            else
-            {
+            else {
                 state = State.onWallCeil;
             }
-            orientation = orientationsBySurface[other.gameObject.tag];
-            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, (float)orientation));
         }
     }
 
@@ -89,5 +105,16 @@ public class PlayerController : MonoBehaviour
         {
             state = State.inAir;
         }
+    }
+
+    private void Rotate(bool cw)
+    {
+        orientation = orientation + (cw ? 90 : -90) % 360; // Go to next or prev orientation
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, (float)orientation));
+    }
+
+    private void Kill()
+    {
+        Debug.Log("RIP");
     }
 }
