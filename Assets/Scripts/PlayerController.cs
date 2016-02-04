@@ -1,8 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+[RequireComponent(typeof(CharacterController))]
 
 public class PlayerController : MonoBehaviour
 {
+
+    [System.Serializable]
+    public class MovementValues
+    {
+        public float gravity;
+
+        public float groundSpeed;
+
+        public float groundJumpSpeed;
+
+        public float wallSpeed;
+
+        public float wallJumpSpeed;
+
+        public float airSpeed;
+
+    }
 
     private enum Orientation
     {
@@ -35,18 +53,14 @@ public class PlayerController : MonoBehaviour
 
     private const int TERRAIN_LAYER = 8;
 
-    public float groundMoveSpeed;
-    public float groundJumpSpeed;
-    public float wallCeilMoveSpeed;
-    public float wallCeilJumpSpeed;
-
-    private Rigidbody2D rigidBody;
+    private CharacterController controller;
+    public MovementValues movement;
     private Orientation orientation;
     private State state;
 
-    void Start()
+    void Awake()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        controller = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -68,38 +82,43 @@ public class PlayerController : MonoBehaviour
         switch (state)
         {
             case State.onGround:
-                moveSpeed = groundMoveSpeed;
-                jumpSpeed = groundJumpSpeed;
+                moveSpeed = movement.groundSpeed;
+                jumpSpeed = movement.groundJumpSpeed;
                 break;
             case State.onWallCeil:
-                moveSpeed = wallCeilMoveSpeed;
-                jumpSpeed = wallCeilJumpSpeed;
+                moveSpeed = movement.wallSpeed;
+                jumpSpeed = movement.wallJumpSpeed;
                 break;
         }
-        rigidBody.AddRelativeForce(new Vector2(Input.GetAxis("Horizontal") * groundMoveSpeed,
-            Input.GetButton("Vertical") ? jumpSpeed : 0f));
+        Debug.Log(movement.gravity);
+        controller.Move(new Vector2(Input.GetAxis("Horizontal") * moveSpeed,
+            jumpSpeed - movement.gravity) * Time.fixedDeltaTime);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
             string tag = other.gameObject.tag;
+
+            // If we landed on a surface on something other than the wheels...
             if (!tag.Equals(surfacesByOrientation[orientation]))
             {
-                Kill();
+                Kill(); // Death
             }
+
+            // If we landed on the ground...
             if (tag.Equals("Ground"))
             {
-                state = State.onGround;
+                state = State.onGround; // We're on the ground
             }
-            else {
-                state = State.onWallCeil;
+            else { // Otherwise...
+                state = State.onWallCeil; // We're on a wall or ceiling
             }
         }
     }
 
-    void OnCollisionExit2D(Collision2D other)
+    void OnCollisionExit(Collision other)
     {
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
