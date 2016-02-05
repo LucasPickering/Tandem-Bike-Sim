@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-[RequireComponent(typeof(CharacterController))]
 
 public class PlayerController : MonoBehaviour
 {
@@ -53,15 +52,9 @@ public class PlayerController : MonoBehaviour
 
     private const int TERRAIN_LAYER = 8;
 
-    private CharacterController controller;
     public MovementValues movement;
     private Orientation orientation;
-    private State state;
-
-    void Awake()
-    {
-        controller = GetComponent<CharacterController>();
-    }
+    private State state = State.inAir;
 
     void Update()
     {
@@ -77,25 +70,28 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveSpeed = 0f;
-        float jumpSpeed = 0f;
+        float vx = 0f;
+        float vy = 0f;
         switch (state)
         {
             case State.onGround:
-                moveSpeed = movement.groundSpeed;
-                jumpSpeed = movement.groundJumpSpeed;
+                vx = movement.groundSpeed;
+                vy = movement.groundJumpSpeed;
                 break;
             case State.onWallCeil:
-                moveSpeed = movement.wallSpeed;
-                jumpSpeed = movement.wallJumpSpeed;
+                vx = movement.wallSpeed;
+                vy = movement.wallJumpSpeed;
+                break;
+            case State.inAir:
+                vx = movement.airSpeed;
+                vy = movement.gravity;
                 break;
         }
-        Debug.Log(movement.gravity);
-        controller.Move(new Vector2(Input.GetAxis("Horizontal") * moveSpeed,
-            jumpSpeed - movement.gravity) * Time.fixedDeltaTime);
+        transform.Translate(new Vector2(Input.GetAxis("Horizontal") * vx,
+            vy) * Time.fixedDeltaTime);
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
@@ -118,7 +114,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionExit(Collision other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
