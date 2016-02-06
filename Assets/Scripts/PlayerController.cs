@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
@@ -10,30 +11,27 @@ public class PlayerController : MonoBehaviour
         public float gravity;
 
         public float groundSpeed;
-
         public float groundJumpSpeed;
+        public float maxGroundSpeed;
 
         public float wallSpeed;
-
         public float wallJumpSpeed;
+        public float maxWallSpeed;
 
         public float airSpeed;
 
+        [System.NonSerialized]
+        public Vector2 velocity;
     }
 
     private enum Orientation
     {
-        up = 0,
-        right = 90,
-        down = 180,
-        left = 270
+        up = 0, right = 90, down = 180, left = 270
     };
 
     private enum State
     {
-        onGround,
-        onWallCeil,
-        inAir
+        onGround, onWall, onCeiling, inAir
     };
 
     static Dictionary<string, Orientation> orientationsBySurface = new Dictionary<string, Orientation>() {
@@ -53,11 +51,22 @@ public class PlayerController : MonoBehaviour
     private const int TERRAIN_LAYER = 8;
 
     public MovementValues movement;
+    private Rigidbody2D rigidBody;
     private Orientation orientation;
     private State state = State.inAir;
+    private bool jump;
+
+    void Start()
+    {
+        rigidBody = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
+        if (Input.GetButtonDown("Jump"))
+        {
+            jump = true;
+        }
         if (Input.GetButtonDown("Rotate Left"))
         {
             Rotate(true);
@@ -70,28 +79,74 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float vx = 0f;
-        float vy = 0f;
+        rigidBody.AddForce(new Vector2(GetHorizForce(), GetVertForce()));
+        CapVelocity();
+        jump = false; // Reset the jump bool, since GetHorizForce and GetVertForce used it already
+    }
+
+    private float GetHorizForce()
+    {
+        float inputH = Input.GetAxis("Horizontal");
         switch (state)
         {
             case State.onGround:
-                vx = movement.groundSpeed;
-                vy = movement.groundJumpSpeed;
-                break;
-            case State.onWallCeil:
-                vx = movement.wallSpeed;
-                vy = movement.wallJumpSpeed;
-                break;
+                return inputH * movement.groundSpeed;
+            case State.onWall:
+                // Reverse the jump force depending on whether we're on a left or right wall
+                return jump ? movement.wallJumpSpeed * Mathf.Sign((float)orientation - 180f) : 0f;
+            case State.onCeiling:
+                return inputH * movement.wallSpeed;
             case State.inAir:
-                vx = movement.airSpeed;
-                vy = movement.gravity;
-                break;
+                return inputH * movement.airSpeed;
         }
-        transform.Translate(new Vector2(Input.GetAxis("Horizontal") * vx,
-            vy) * Time.fixedDeltaTime);
+        return 0f;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private float GetVertForce()
+    {
+        float inputV = Input.GetAxis("Vertical");
+        switch (state)
+        {
+            case State.onGround:
+                return jump ? movement.wallJumpSpeed : 0f;
+            case State.onWall:
+                return inputV * movement.groundSpeed;
+            case State.onCeiling:
+                return jump ? -movement.wallJumpSpeed : 0f;
+        }
+        return 0f;
+    }
+
+    private void CapVelocity()
+    {
+        Debug.Log(rigidBody.velocity);
+        float cappedX = rigidBody.velocity.x;
+        float cappedY = rigidBody.velocity.y;
+        switch (state)
+        {
+            case State.onGround:
+                // Math functions let the cap work in both directions
+                if (Mathf.Abs(rigidBody.velocity.x) > movement.maxGroundSpeed)
+                {
+                    cappedX = Mathf.Sign(rigidBody.velocity.x) * movement.maxGroundSpeed;
+                }
+                break;
+            case State.onWall:
+                // Only upward movement is capped
+                cappedY = Mathf.Min(cappedY, movement.maxWallSpeed);
+                break;
+            case State.onCeiling:
+                // Math functions let the cap work in both directions
+                if (Mathf.Abs(rigidBody.velocity.x) > movement.maxWallSpeed)
+                {
+                    cappedX = Mathf.Sign(rigidBody.velocity.x) * movement.maxWallSpeed;
+                }
+                break;
+        }
+        rigidBody.velocity = new Vector2(cappedX, cappedY);
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
@@ -103,18 +158,16 @@ public class PlayerController : MonoBehaviour
                 Kill(); // Death
             }
 
-            // If we landed on the ground...
             if (tag.Equals("Ground"))
-            {
                 state = State.onGround; // We're on the ground
-            }
-            else { // Otherwise...
-                state = State.onWallCeil; // We're on a wall or ceiling
-            }
+            else if (tag.Equals("Ceiling"))
+                state = State.onCeiling; // We're on the ceiling
+            else
+                state = State.onWall; // We're on a wall
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
@@ -130,6 +183,6 @@ public class PlayerController : MonoBehaviour
 
     private void Kill()
     {
-        Debug.Log("RIP");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
