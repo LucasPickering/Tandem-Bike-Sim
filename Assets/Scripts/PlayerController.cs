@@ -119,7 +119,6 @@ public class PlayerController : MonoBehaviour
 
     private void CapVelocity()
     {
-        Debug.Log(rigidBody.velocity);
         float cappedX = rigidBody.velocity.x;
         float cappedY = rigidBody.velocity.y;
         switch (state)
