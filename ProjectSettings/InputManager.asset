@@ -118,7 +118,7 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Rotate Left
+    m_Name: Rotation Left
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -134,11 +134,27 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Rotate Right
+    m_Name: Rotation Right
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: right
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: 0.001
+    sensitivity: 3
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Rotation Up
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: up
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1

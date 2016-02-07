@@ -26,25 +26,23 @@ public class PlayerController : MonoBehaviour
 
     private enum Orientation
     {
-        up = 0, right = 90, down = 180, left = 270
+        up = 0, right = 90, left = 270
     };
 
     private enum State
     {
-        onGround, onWall, onCeiling, inAir
+        onGround, onWall, inAir
     };
 
     static Dictionary<string, Orientation> orientationsBySurface = new Dictionary<string, Orientation>() {
         { "Ground", Orientation.up },
         { "Left Wall", Orientation.right },
-        { "Ceiling", Orientation.down },
         { "Right Wall", Orientation.left }
     };
 
     static Dictionary<Orientation, string> surfacesByOrientation = new Dictionary<Orientation, string>() {
         { Orientation.up, "Ground" },
         { Orientation.right, "Left Wall" },
-        { Orientation.down, "Ceiling" },
         { Orientation.left, "Right Wall" }
     };
 
@@ -67,14 +65,24 @@ public class PlayerController : MonoBehaviour
         {
             jump = true;
         }
-        if (Input.GetButtonDown("Rotate Left"))
+        if (Input.GetButtonDown("Rotation Left"))
         {
-            Rotate(true);
+            RotateTo(Orientation.left);
         }
-        if (Input.GetButtonDown("Rotate Right"))
+        if (Input.GetButtonDown("Rotation Right"))
         {
-            Rotate(false);
+            RotateTo(Orientation.right);
         }
+        if(Input.GetButtonDown("Rotation Up"))
+        {
+            RotateTo(Orientation.up);
+        }
+    }
+
+    private void RotateTo(Orientation or)
+    {
+        orientation = or;
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, (float)or));
     }
 
     void FixedUpdate()
@@ -86,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     private float GetHorizForce()
     {
-        float inputH = Input.GetAxis("Horizontal");
+        float inputH = Input.GetAxisRaw("Horizontal");
         switch (state)
         {
             case State.onGround:
@@ -94,8 +102,6 @@ public class PlayerController : MonoBehaviour
             case State.onWall:
                 // Reverse the jump force depending on whether we're on a left or right wall
                 return jump ? movement.wallJumpSpeed * Mathf.Sign((float)orientation - 180f) : 0f;
-            case State.onCeiling:
-                return inputH * movement.wallSpeed;
             case State.inAir:
                 return inputH * movement.airSpeed;
         }
@@ -108,11 +114,9 @@ public class PlayerController : MonoBehaviour
         switch (state)
         {
             case State.onGround:
-                return jump ? movement.wallJumpSpeed : 0f;
+                return jump ? movement.groundJumpSpeed : 0f;
             case State.onWall:
-                return inputV * movement.groundSpeed;
-            case State.onCeiling:
-                return jump ? -movement.wallJumpSpeed : 0f;
+                return inputV * movement.wallSpeed;
         }
         return 0f;
     }
@@ -134,13 +138,6 @@ public class PlayerController : MonoBehaviour
                 // Only upward movement is capped
                 cappedY = Mathf.Min(cappedY, movement.maxWallSpeed);
                 break;
-            case State.onCeiling:
-                // Math functions let the cap work in both directions
-                if (Mathf.Abs(rigidBody.velocity.x) > movement.maxWallSpeed)
-                {
-                    cappedX = Mathf.Sign(rigidBody.velocity.x) * movement.maxWallSpeed;
-                }
-                break;
         }
         rigidBody.velocity = new Vector2(cappedX, cappedY);
     }
@@ -159,8 +156,6 @@ public class PlayerController : MonoBehaviour
 
             if (tag.Equals("Ground"))
                 state = State.onGround; // We're on the ground
-            else if (tag.Equals("Ceiling"))
-                state = State.onCeiling; // We're on the ceiling
             else
                 state = State.onWall; // We're on a wall
         }
@@ -172,12 +167,6 @@ public class PlayerController : MonoBehaviour
         {
             state = State.inAir;
         }
-    }
-
-    private void Rotate(bool cw)
-    {
-        orientation = orientation + (cw ? 90 : -90) % 360; // Go to next or prev orientation
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, (float)orientation));
     }
 
     private void Kill()
