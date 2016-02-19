@@ -156,8 +156,10 @@ public class PlayerController : MonoBehaviour
 
             if (tag.Equals("Ground"))
                 state = State.onGround; // We're on the ground
-            else
+            else {
                 state = State.onWall; // We're on a wall
+                rigidBody.velocity = new Vector2(0f, rigidBody.velocity.x + rigidBody.velocity.y); // Transfer lateral momentum to upward momentum
+            }
         }
     }
 

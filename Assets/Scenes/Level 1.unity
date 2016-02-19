@@ -295,7 +295,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 163867867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.48, y: 5.6, z: 0}
+  m_LocalPosition: {x: 6.2, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 30, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -454,9 +454,9 @@ MonoBehaviour:
     groundSpeed: 500
     groundJumpSpeed: 4000
     maxGroundSpeed: 20
-    wallSpeed: 200
-    wallJumpSpeed: 500
-    maxWallSpeed: 20
+    wallSpeed: 75
+    wallJumpSpeed: 2000
+    maxWallSpeed: 15
     airSpeed: 10
 --- !u!61 &925950794
 BoxCollider2D:
