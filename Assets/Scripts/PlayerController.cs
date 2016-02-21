@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private enum Orientation
     {
-        up = 0, right = 90, left = 270
+        up = 0, right = 270, left = 90
     };
 
     private enum State
@@ -36,14 +36,14 @@ public class PlayerController : MonoBehaviour
 
     static Dictionary<string, Orientation> orientationsBySurface = new Dictionary<string, Orientation>() {
         { "Ground", Orientation.up },
-        { "Left Wall", Orientation.right },
-        { "Right Wall", Orientation.left }
+        { "Right Wall", Orientation.right },
+		{ "Left Wall", Orientation.left }
     };
 
     static Dictionary<Orientation, string> surfacesByOrientation = new Dictionary<Orientation, string>() {
         { Orientation.up, "Ground" },
-        { Orientation.right, "Left Wall" },
-        { Orientation.left, "Right Wall" }
+        { Orientation.right, "Right Wall" },
+        { Orientation.left, "Left Wall" }
     };
 
     private const int TERRAIN_LAYER = 8;
