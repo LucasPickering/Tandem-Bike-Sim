@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     static Dictionary<string, Orientation> orientationsBySurface = new Dictionary<string, Orientation>() {
         { "Ground", Orientation.up },
         { "Right Wall", Orientation.right },
-		{ "Left Wall", Orientation.left }
+        { "Left Wall", Orientation.left }
     };
 
     static Dictionary<Orientation, string> surfacesByOrientation = new Dictionary<Orientation, string>() {
@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
     public MovementValues movement;
     private Rigidbody2D rigidBody;
+    private Animator animator;
     private Orientation orientation;
     private State state = State.inAir;
     private bool jump;
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour
         {
             RotateTo(Orientation.right);
         }
-        if(Input.GetButtonDown("Rotation Up"))
+        if (Input.GetButtonDown("Rotation Up"))
         {
             RotateTo(Orientation.up);
         }
@@ -89,6 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody.AddForce(new Vector2(GetHorizForce(), GetVertForce()));
         CapVelocity();
+        animator.SetFloat("Speed", GetPedalSpeed());
         jump = false; // Reset the jump bool, since GetHorizForce and GetVertForce used it already
     }
 
@@ -140,6 +143,12 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         rigidBody.velocity = new Vector2(cappedX, cappedY);
+    }
+
+    private float GetPedalSpeed()
+    {
+        Vector2 velocity = rigidBody.velocity;
+        return state == State.onWall ? velocity.y : velocity.x;
     }
 
     void OnCollisionEnter2D(Collision2D other)
