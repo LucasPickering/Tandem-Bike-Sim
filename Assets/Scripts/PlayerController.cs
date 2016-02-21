@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
 
         public float airSpeed;
 
+        public float rotationSpeed;
+        public float maxRotationSpeed;
+
         [System.NonSerialized]
         public Vector2 velocity;
     }
@@ -67,18 +70,6 @@ public class PlayerController : MonoBehaviour
         {
             jump = true;
         }
-        if (Input.GetButtonDown("Rotation Left"))
-        {
-            RotateTo(Orientation.left);
-        }
-        if (Input.GetButtonDown("Rotation Right"))
-        {
-            RotateTo(Orientation.right);
-        }
-        if (Input.GetButtonDown("Rotation Up"))
-        {
-            RotateTo(Orientation.up);
-        }
     }
 
     private void RotateTo(Orientation or)
@@ -89,12 +80,16 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigidBody.AddForce(new Vector2(GetHorizForce(), GetVertForce()));
+        // Rotate the player according to the input
+        if(rigidBody.angularVelocity < movement.maxRotationSpeed) {
+            rigidBody.AddTorque(Input.GetAxisRaw("Rotation") * movement.rotationSpeed);
+        }
+
+        rigidBody.AddRelativeForce(new Vector2(GetHorizForce(), GetVertForce()));
         CapVelocity();
         animator.SetFloat("Speed", GetPedalSpeed());
         jump = false; // Reset the jump bool, since GetHorizForce and GetVertForce used it already
     }
-
     private float GetHorizForce()
     {
         float inputH = Input.GetAxisRaw("Horizontal");
@@ -151,24 +146,16 @@ public class PlayerController : MonoBehaviour
         return state == State.onWall ? velocity.y : velocity.x;
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Kill(); // Only the box collider is a trigger. If it hits anything, the player dies
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
-            string tag = other.gameObject.tag;
-
-            // If we landed on a surface on something other than the wheels...
-            if (!tag.Equals(surfacesByOrientation[orientation]))
-            {
-                Kill(); // Death
-            }
-
-            if (tag.Equals("Ground"))
-                state = State.onGround; // We're on the ground
-            else {
-                state = State.onWall; // We're on a wall
-                rigidBody.velocity = new Vector2(0f, rigidBody.velocity.x + rigidBody.velocity.y); // Transfer lateral momentum to upward momentum
-            }
+            state = State.onGround; // We're on the ground
         }
     }
 

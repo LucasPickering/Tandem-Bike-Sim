@@ -390,6 +390,8 @@ GameObject:
   - 50: {fileID: 925950795}
   - 95: {fileID: 925950796}
   - 212: {fileID: 925950791}
+  - 58: {fileID: 925950797}
+  - 58: {fileID: 925950798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -434,7 +436,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 925950790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.04, y: -2.71, z: 0}
+  m_LocalPosition: {x: -15.04, y: -2.84, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -453,12 +455,14 @@ MonoBehaviour:
   movement:
     gravity: -10
     groundSpeed: 500
-    groundJumpSpeed: 4000
+    groundJumpSpeed: 6000
     maxGroundSpeed: 20
-    wallSpeed: 75
-    wallJumpSpeed: 2000
+    wallSpeed: 150
+    wallJumpSpeed: 6000
     maxWallSpeed: 15
     airSpeed: 10
+    rotationSpeed: 120
+    maxRotationSpeed: 10
 --- !u!61 &925950794
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -468,11 +472,11 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.0009807587, y: 0.010785103}
+  m_Offset: {x: -0.0016282797, y: 0.037335515}
   serializedVersion: 2
-  m_Size: {x: 0.66866106, y: 0.30197525}
+  m_Size: {x: 0.548213, y: 0.23333263}
 --- !u!50 &925950795
 Rigidbody2D:
   serializedVersion: 2
@@ -484,12 +488,12 @@ Rigidbody2D:
   m_Mass: 8
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!95 &925950796
 Animator:
   serializedVersion: 3
@@ -507,6 +511,34 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!58 &925950797
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 925950790}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.258, y: -0.062}
+  serializedVersion: 2
+  m_Radius: 0.08092427
+--- !u!58 &925950798
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 925950790}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.258, y: -0.062}
+  serializedVersion: 2
+  m_Radius: 0.08092427
 --- !u!1 &1102823176
 GameObject:
   m_ObjectHideFlags: 0

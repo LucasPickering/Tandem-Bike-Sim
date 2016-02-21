@@ -118,10 +118,10 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Rotation Left
+    m_Name: Rotation
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: right
     positiveButton: left
     altNegativeButton: 
     altPositiveButton: 
