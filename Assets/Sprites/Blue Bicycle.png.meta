@@ -1,0 +1,249 @@
+fileFormatVersion: 2
+guid: 32b9330d7c3f746459174d79fd4cebbe
+timeCreated: 1456104194
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Blue Bicycle_0
+    21300002: Blue Bicycle_1
+    21300004: Blue Bicycle_2
+    21300006: Blue Bicycle_3
+    21300008: Blue Bicycle_4
+    21300010: Blue Bicycle_5
+    21300012: Blue Bicycle_6
+    21300014: Blue Bicycle_7
+    21300016: Blue Bicycle_8
+    21300018: Blue Bicycle_9
+    21300020: Blue Bicycle_10
+    21300022: Blue Bicycle_11
+    21300024: Blue Bicycle_12
+    21300026: Blue Bicycle_13
+    21300028: Blue Bicycle_14
+    21300030: Blue Bicycle_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 64
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Blue Bicycle_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_2
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_4
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_6
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_8
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_9
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_10
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_12
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_13
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_14
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Blue Bicycle_15
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

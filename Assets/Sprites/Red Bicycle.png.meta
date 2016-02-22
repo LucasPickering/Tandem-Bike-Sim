@@ -1,0 +1,249 @@
+fileFormatVersion: 2
+guid: fbf4402a91618bd4595d1eabb6ebc917
+timeCreated: 1456104167
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Red Bicycle_0
+    21300002: Red Bicycle_1
+    21300004: Red Bicycle_2
+    21300006: Red Bicycle_3
+    21300008: Red Bicycle_4
+    21300010: Red Bicycle_5
+    21300012: Red Bicycle_6
+    21300014: Red Bicycle_7
+    21300016: Red Bicycle_8
+    21300018: Red Bicycle_9
+    21300020: Red Bicycle_10
+    21300022: Red Bicycle_11
+    21300024: Red Bicycle_12
+    21300026: Red Bicycle_13
+    21300028: Red Bicycle_14
+    21300030: Red Bicycle_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 64
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Red Bicycle_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_2
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_4
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_6
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_8
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_9
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_10
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_12
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_13
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_14
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Red Bicycle_15
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 15
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
