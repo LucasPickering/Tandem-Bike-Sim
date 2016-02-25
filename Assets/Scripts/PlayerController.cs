@@ -156,6 +156,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
             state = State.onGround; // We're on the ground
+            if(!other.gameObject.tag.Equals("Ground")) {
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
+                Debug.Log("Stick");
+            }
         }
     }
 
