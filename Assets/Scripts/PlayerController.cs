@@ -22,9 +22,6 @@ public class PlayerController : MonoBehaviour
 
         public float rotationSpeed;
         public float maxRotationSpeed;
-
-        [System.NonSerialized]
-        public Vector2 velocity;
     }
 
     private enum Orientation
@@ -37,23 +34,17 @@ public class PlayerController : MonoBehaviour
         onGround, onWall, inAir
     };
 
-    static Dictionary<string, Orientation> orientationsBySurface = new Dictionary<string, Orientation>() {
-        { "Ground", Orientation.up },
-        { "Right Wall", Orientation.right },
-        { "Left Wall", Orientation.left }
-    };
-
-    static Dictionary<Orientation, string> surfacesByOrientation = new Dictionary<Orientation, string>() {
-        { Orientation.up, "Ground" },
-        { Orientation.right, "Right Wall" },
-        { Orientation.left, "Left Wall" }
-    };
-
     private const int TERRAIN_LAYER = 8;
 
     public MovementValues movement;
     private Rigidbody2D rigidBody;
     private Animator animator;
+
+    [SerializeField]
+    public GameObject dustPrefab;
+    private Vector3 dustPos1 = new Vector3(-0.235f, -0.23f, 0f);
+    private Vector3 dustPos2 = new Vector3(0.235f, -0.23f, 0f);
+
     private Orientation orientation;
     private State state = State.inAir;
     private bool jump;
@@ -80,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Debug.Log("State: " + state + ", " + new Vector2(GetHorizForce(), GetVertForce()));
         // Rotate the player according to the input
         if(rigidBody.angularVelocity < movement.maxRotationSpeed) {
             rigidBody.AddTorque(Input.GetAxisRaw("Rotation") * movement.rotationSpeed);
@@ -92,29 +84,29 @@ public class PlayerController : MonoBehaviour
     }
     private float GetHorizForce()
     {
-        float inputH = Input.GetAxisRaw("Horizontal");
+        float input = Input.GetAxisRaw("Horizontal");
         switch (state)
         {
             case State.onGround:
-                return inputH * movement.groundSpeed;
+                return input * movement.groundSpeed;
             case State.onWall:
                 // Reverse the jump force depending on whether we're on a left or right wall
                 return jump ? movement.wallJumpSpeed * Mathf.Sign((float)orientation - 180f) : 0f;
             case State.inAir:
-                return inputH * movement.airSpeed;
+                return input * movement.airSpeed;
         }
         return 0f;
     }
 
     private float GetVertForce()
     {
-        float inputV = Input.GetAxis("Vertical");
+        float input = Input.GetAxisRaw("Horizontal");
         switch (state)
         {
             case State.onGround:
                 return jump ? movement.groundJumpSpeed : 0f;
             case State.onWall:
-                return inputV * movement.wallSpeed;
+                return input * movement.wallSpeed;
         }
         return 0f;
     }
@@ -155,11 +147,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.layer == TERRAIN_LAYER)
         {
-            state = State.onGround; // We're on the ground
-            if(!other.gameObject.tag.Equals("Ground")) {
-                rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
-                Debug.Log("Stick");
-            }
+            state = other.gameObject.CompareTag("Ground") ? State.onGround : State.onWall;
+            MakeDust(other.contacts[0].point); // Make dust particles
         }
     }
 
@@ -174,5 +163,10 @@ public class PlayerController : MonoBehaviour
     private void Kill()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void MakeDust(Vector2 pos)
+    {
+        Instantiate(dustPrefab, pos, Quaternion.identity);
     }
 }

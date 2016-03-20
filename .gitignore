@@ -26,3 +26,8 @@ ExportedObj/
 sysinfo.txt
 
 *.lnk
+*.exe
+*.pdb
+Tandem-Bike-Sim_Data/
+Assets/Standard Assets*
+Assets/Editor*
