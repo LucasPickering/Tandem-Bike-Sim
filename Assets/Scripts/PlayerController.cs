@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
         public float rotationSpeed;
         public float maxRotationSpeed;
+
     }
 
     private enum Orientation
@@ -36,14 +37,13 @@ public class PlayerController : MonoBehaviour
 
     private const int TERRAIN_LAYER = 8;
 
+    public float deathZone;
     public MovementValues movement;
     private Rigidbody2D rigidBody;
     private Animator animator;
 
     [SerializeField]
     public GameObject dustPrefab;
-    private Vector3 dustPos1 = new Vector3(-0.235f, -0.23f, 0f);
-    private Vector3 dustPos2 = new Vector3(0.235f, -0.23f, 0f);
 
     private Orientation orientation;
     private State state = State.inAir;
@@ -71,7 +71,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Debug.Log("State: " + state + ", " + new Vector2(GetHorizForce(), GetVertForce()));
+        if(transform.position.y < deathZone) {
+            Kill();
+        }
+
         // Rotate the player according to the input
         if(rigidBody.angularVelocity < movement.maxRotationSpeed) {
             rigidBody.AddTorque(Input.GetAxisRaw("Rotation") * movement.rotationSpeed);
