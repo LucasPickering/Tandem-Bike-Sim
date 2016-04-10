@@ -88,8 +88,10 @@ public class PlayerController : MonoBehaviour
 		SetState (); // Set the player's state (on the ground or in the air)
 
 		// Rotate the player according to the input
-		if (rigidBody.angularVelocity < movement.maxRotationSpeed) {
-			rigidBody.AddTorque (Input.GetAxisRaw ("Rotation") * movement.rotationSpeed);
+		float angularVel = rigidBody.angularVelocity;
+		float torque = Input.GetAxisRaw ("Rotation") * movement.rotationSpeed;
+		if (Mathf.Abs (angularVel) < movement.maxRotationSpeed || Mathf.Sign (angularVel) != Mathf.Sign (torque)) {
+			rigidBody.AddTorque (torque);
 		}
 
 		rigidBody.AddRelativeForce (new Vector2 (GetHorizForce (), GetVertForce ()));

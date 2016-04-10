@@ -270,58 +270,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: pSystem1
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: dustPrefab
-      value: 
-      objectReference: {fileID: 193134, guid: 63305f07c83f96d46b75ddb19de7bb3e, type: 2}
-    - target: {fileID: 5883434, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5827354, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: deathZone
-      value: -40
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: raycastDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: raycastSourceOffset
-      value: 1.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6107654, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6107654, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: m_Offset.y
-      value: -0.072411835
-      objectReference: {fileID: 0}
-    - target: {fileID: 6107654, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: m_Size.y
-      value: 0.14600462
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: maxHp
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: movement.maxRotationSpeed
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
-      propertyPath: movement.airSpeed
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
   m_IsPrefabParent: 0
@@ -1025,20 +973,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 192584, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
   m_PrefabInternal: {fileID: 57804634}
---- !u!61 &925950791
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 925950790}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.017675877, y: 0.1189722}
-  serializedVersion: 2
-  m_Size: {x: 0.18990147, y: 0.2308056}
 --- !u!1 &931855808
 GameObject:
   m_ObjectHideFlags: 0

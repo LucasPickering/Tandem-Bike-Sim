@@ -15,6 +15,7 @@ GameObject:
   - 58: {fileID: 5883434}
   - 95: {fileID: 9507282}
   - 58: {fileID: 5827354}
+  - 61: {fileID: 6162798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -88,11 +89,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011768341, y: -0.072411835}
+  serializedVersion: 2
+  m_Size: {x: 0.3784938, y: 0.14600462}
+--- !u!61 &6162798
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192584}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.0011768341, y: 0.045200676}
+  m_Offset: {x: 0.017675877, y: 0.1189722}
   serializedVersion: 2
-  m_Size: {x: 0.3784938, y: 0.38122964}
+  m_Size: {x: 0.18990147, y: 0.2308056}
 --- !u!95 &9507282
 Animator:
   serializedVersion: 3
@@ -121,6 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3e073af2680e74180e41a6c16f2891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathZone: -40
+  raycastSourceOffset: 1.9
+  raycastDistance: 2
+  maxHp: 20
   movement:
     gravity: -10
     groundSpeed: 500
@@ -129,11 +148,10 @@ MonoBehaviour:
     wallSpeed: 250
     wallJumpSpeed: 6000
     maxWallSpeed: 15
-    airSpeed: 10
-    rotationSpeed: 300
-    maxRotationSpeed: 75
-  pSystem1: {fileID: 0}
-  pSystem2: {fileID: 0}
+    airSpeed: 30
+    rotationSpeed: 250
+    maxRotationSpeed: 125
+  dustPrefab: {fileID: 193134, guid: 63305f07c83f96d46b75ddb19de7bb3e, type: 2}
 --- !u!212 &21260764
 SpriteRenderer:
   m_ObjectHideFlags: 1
