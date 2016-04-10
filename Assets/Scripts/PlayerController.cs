@@ -43,25 +43,26 @@ public class PlayerController : MonoBehaviour
 
 	private const int TERRAIN_LAYER = 8;
 
-
 	public float deathZone;
 	public float raycastSourceOffset;
 	public float raycastDistance;
+	public int maxHp;
 	public MovementValues movement;
-	private Rigidbody2D rigidBody;
-	private Animator animator;
-
 	[SerializeField]
 	public GameObject dustPrefab;
 
+	private Rigidbody2D rigidBody;
+	private Animator animator;
 	private Orientation orientation;
 	private State state = State.inAir;
 	private bool jump;
+	private int currentHp;
 
 	void Start ()
 	{
 		rigidBody = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
+		currentHp = maxHp;
 	}
 
 	void Update ()
@@ -198,5 +199,23 @@ public class PlayerController : MonoBehaviour
 	public static Vector2 RotateAroundPivot (Vector3 point, Vector3 pivot, Quaternion rotation)
 	{
 		return rotation * (point - pivot) + pivot;
+	}
+
+	public int getCurrentHp ()
+	{
+		return currentHp;
+	}
+
+	public int getMaxHp ()
+	{
+		return maxHp;
+	}
+
+	public void hurt (int damage)
+	{
+		currentHp = Mathf.Max (currentHp - damage, 0); // Don't let it go below 0
+		if (currentHp <= 0) {
+			Kill ();
+		}
 	}
 }
