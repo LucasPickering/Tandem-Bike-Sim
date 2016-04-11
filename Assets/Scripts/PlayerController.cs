@@ -154,7 +154,9 @@ public class PlayerController : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		Kill (); // Only the box collider for the rider is a trigger. If it hits anything, the player dies
+		if (other.gameObject.layer == TERRAIN_LAYER) {
+			Kill (); // Only the box collider for the rider is a trigger. If it hits anything, the player dies
+		}
 	}
 
 	// Sets the state to onGround or inAir via raycasting
@@ -219,5 +221,6 @@ public class PlayerController : MonoBehaviour
 		if (currentHp <= 0) {
 			Kill ();
 		}
+		Debug.Log (currentHp);
 	}
 }

@@ -22,6 +22,6 @@ public class HealthBarHandler : MonoBehaviour
 	{
 		RectTransform rectTrans = (RectTransform)transform;
 		float height = rectTrans.rect.height;
-		rectTrans.sizeDelta = new Vector2 (playerController.getCurrentHp () / playerController.getMaxHp () * hpToPixelRatio, height);
+		rectTrans.sizeDelta = new Vector2 ((float)playerController.getCurrentHp () / playerController.getMaxHp () * hpToPixelRatio, height);
 	}
 }
