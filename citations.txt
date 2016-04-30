@@ -1,3 +1,5 @@
 The enemy texture was taken from Pokemon.
+The background music was taken from https://www.assetstore.unity3d.com/en/#!/content/16756
+The sky background was taken from https://www.assetstore.unity3d.com/en/#!/content/21555
 
 I made everything else.
