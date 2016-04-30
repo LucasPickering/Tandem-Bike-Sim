@@ -87,14 +87,22 @@ public class PlayerController : MonoBehaviour
 
 		SetState (); // Set the player's state (on the ground or in the air)
 
+		/*
 		// Rotate the player according to the input
 		float angularVel = rigidBody.angularVelocity;
 		float torque = Input.GetAxisRaw ("Rotation") * movement.rotationSpeed;
 		if (Mathf.Abs (angularVel) < movement.maxRotationSpeed || Mathf.Sign (angularVel) != Mathf.Sign (torque)) {
 			rigidBody.AddTorque (torque);
 		}
+		*/
+
+		// Rotate the player
+		if (Mathf.Abs(Input.GetAxisRaw ("Rotation")) > 0) {
+			rigidBody.MoveRotation (rigidBody.rotation + Input.GetAxisRaw ("Rotation") * movement.rotationSpeed);
+		}
 
 		rigidBody.AddRelativeForce (new Vector2 (GetHorizForce (), GetVertForce ()));
+		//rigidBody.MovePosition (rigidBody.position + new Vector2 (GetHorizForce (), GetVertForce ()));
 		CapVelocity ();
 		animator.SetFloat ("Speed", GetPedalSpeed ());
 		jump = false; // Reset the jump bool, since GetHorizForce and GetVertForce used it already
@@ -221,6 +229,5 @@ public class PlayerController : MonoBehaviour
 		if (currentHp <= 0) {
 			Kill ();
 		}
-		Debug.Log (currentHp);
 	}
 }

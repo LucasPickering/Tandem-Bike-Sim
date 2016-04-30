@@ -270,6 +270,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
+      propertyPath: movement.groundSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
+      propertyPath: movement.groundJumpSpeed
+      value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
+      propertyPath: movement.rotationSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5022096, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11434934, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
+      propertyPath: raycastDistance
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 723eee018f4d63c44894420d99fc6529, type: 2}
   m_IsPrefabParent: 0
