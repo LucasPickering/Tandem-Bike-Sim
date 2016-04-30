@@ -9,6 +9,9 @@ public class CameraChaser : MonoBehaviour
 
     void Update()
     {
-        transform.position = target.transform.position - Vector3.forward;
+		float x = target.transform.position.x;
+		float y = target.transform.position.y;
+		float z = transform.position.z;
+		transform.position = new Vector3 (x, y, z);
     }
 }
