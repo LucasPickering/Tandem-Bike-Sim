@@ -139,7 +139,7 @@ MonoBehaviour:
   deathZone: -40
   raycastSourceOffset: 1.9
   raycastDistance: 2.5
-  maxHp: 20
+  maxHp: 50
   movement:
     gravity: -10
     groundSpeed: 500
